@@ -1,6 +1,9 @@
-let nombre: string
+// import dotenv from "dotenv";
+import server from "./server/server";
+import mongoose from "mongoose";
 
-//cado 
+// dotenv.config();
+mongoose.set('strictQuery', true);
+const Server = new server();
 
-
-console.log(nombre.toUpperCase())
+Server.listen();

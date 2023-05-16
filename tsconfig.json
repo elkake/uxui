@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     
-    "target": "es2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "target": "ES6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
                    /* Emit ECMAScript-standard-compliant class fields. */
 
     /* Modules */
