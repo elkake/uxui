@@ -1,6 +1,7 @@
-let nombre: string
+import dotenv from 'dotenv'
+import Server from './server/server'
 
-//cado 
+dotenv.config()
 
-
-console.log(nombre.toUpperCase())
+const server: Server = new Server()
+server.listen()
