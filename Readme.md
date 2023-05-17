@@ -79,7 +79,7 @@ Descripción:
 
 Parámetros de consulta:
 
-* - `correo` (string, obligatorio): correo del usuario a buscar.
+- `correo` (string, obligatorio): correo del usuario a buscar.
 
 Respuesta exitosa:
 
@@ -110,7 +110,7 @@ Descripción:
 
 Parámetros de ruta:
 
-* - `id` (string, obligatorio): ID del usuario a buscar.
+- `id` (string, obligatorio): ID del usuario a buscar.
 
 Respuesta exitosa:
 
@@ -168,13 +168,13 @@ Descripción:
 
 Parámetros de ruta:
 
-* - `id` (string, obligatorio): ID del usuario a actualizar.
+- `id` (string, obligatorio): ID del usuario a actualizar.
 
 Parámetros de cuerpo de la solicitud:
 
-* - `nombre` (string, opcional): Nuevo nombre del usuario.
-* - `correo` (string, opcional): Nuevo correo electrónico del usuario.
-* - `contrasena` (string, opcional): Nueva contraseña del usuario.
+- `nombre` (string, opcional): Nuevo nombre del usuario.
+- `correo` (string, opcional): Nuevo correo electrónico del usuario.
+- `contrasena` (string, opcional): Nueva contraseña del usuario.
 
 Respuesta exitosa:
 
@@ -203,7 +203,7 @@ Descripción:
 
 Parámetros de ruta:
 
-* - `id` (string, obligatorio): ID del usuario a eliminar.
+- `id` (string, obligatorio): ID del usuario a eliminar.
 
 Respuesta exitosa:
 
