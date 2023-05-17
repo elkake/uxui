@@ -1,11 +1,7 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -28,7 +24,10 @@ const UserContrtoller = __importStar(require("../controllers/userController"));
 const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     try {
-        UserContrtoller.getUserByEmail(req, res);
+        const { correo } = req.body;
+        correo
+            ? UserContrtoller.getUserByEmail(req, res, correo)
+            : UserContrtoller.getUsers(res);
         console.log('get');
     }
     catch (error) {
@@ -36,7 +35,6 @@ router.get('/', (req, res) => {
         console.log('-----------------------------');
         console.log(error);
     }
-    ;
 });
 router.get('/user/:id', (req, res) => {
     try {
@@ -48,7 +46,6 @@ router.get('/user/:id', (req, res) => {
         console.log('-----------------------------');
         console.log(error);
     }
-    ;
 });
 router.post('/loginm', async (req, res) => {
     try {
@@ -61,7 +58,6 @@ router.post('/loginm', async (req, res) => {
         console.log(error);
         console.log('-----------------------------');
     }
-    ;
 });
 router.post('/', async (req, res) => {
     try {
@@ -74,19 +70,17 @@ router.post('/', async (req, res) => {
         console.log(error);
         console.log('-----------------------------');
     }
-    ;
 });
 router.put('/:id', async (req, res) => {
     try {
         await UserContrtoller.updateUser(req, res);
-        console.log("put");
+        console.log('put');
     }
     catch (error) {
         console.log('No se pudo actualizar los datos del usuario');
         console.log('-----------------------------');
         console.log(error);
     }
-    ;
 });
 router.delete('/:id', async (req, res) => {
     try {
@@ -97,7 +91,6 @@ router.delete('/:id', async (req, res) => {
         console.log('-----------------------------');
         console.log(error);
     }
-    ;
 });
 exports.default = router;
 //# sourceMappingURL=user.routes.js.map
