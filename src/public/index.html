@@ -1,50 +1,23 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentación de la API</title>
-  <style>
-    body {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-    }
-
-    h1, h2 {
-      margin-top: 30px;
-    }
-
-    code {
-      background-color: #f1f1f1;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    pre {
-      background-color: #f1f1f1;
-      padding: 10px;
-      overflow-x: auto;
-    }
-  </style>
 </head>
 <body>
   <h1>Verificar las variables de entorno</h1>
-  <p>Para la correcta conexión a MongoDB, asegúrate de colocar el enlace correcto en la variable de entorno <code>MONGODB_URI</code>.</p>
-
+  <p>Para la correcta conexión a MongoDB, colocar el link correcto.</p>
+  <p><code>MONGODB_URI</code> contiene el enlace a mi MongoDB.</p>
   <h2>MODELO</h2>
-  <p>El modelo de ejemplo solo contiene los campos <code>nombre</code> y <code>correo</code>.</p>
-
+  <p>El modelo de ejemplo solo contiene los datos nombre y correo.</p>
   <h2>Scripts</h2>
   <pre><code>npm run tsc # transpila el código
 npm start # inicia el programa
 Ctrl + c # finaliza el programa</code></pre>
-
+  <p>EN PROCESO</p>
   <h1>Documentación de la API</h1>
-
   <h2>Obtener todos los usuarios</h2>
   <p><strong>Endpoint:</strong> <code>GET https://ncback-production.up.railway.app/api/usuarios</code></p>
   <p>Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.</p>
@@ -70,21 +43,26 @@ Ctrl + c # finaliza el programa</code></pre>
     }
   ]
 }</code></pre>
-
   <h2>Obtener un usuario por correo</h2>
   <p><strong>Endpoint:</strong> <code>GET https://ncback-production.up.railway.app/api/usuarios</code></p>
-  <p>Este endpoint se utiliza para obtener un usuario específico por su correo.</p>
+  <p>Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.</p>
   <p><strong>Parámetros de consulta:</strong></p>
   <ul>
-    <li><code>correo</code> (string, obligatorio): Correo del usuario a buscar.</li>
+    <li><code>correo</code> (string, obligatorio): correo del usuario a buscar.</li>
   </ul>
   <p><strong>Respuesta exitosa:</strong> Código de estado <code>200 OK</code>.</p>
+  <p><strong>Ejemplo de petición:</strong></p>
   <pre><code>{
-    "id": "1",
-    "nombre": "Usuario 1",
-    "correo": "usuario1@example.com"
+  "correo": "nuevo.correo@example.com"
 }</code></pre>
-
+  <p><strong>Ejemplo de respuesta:</strong></p>
+  <pre><code>{
+    {
+      "id": "1",
+      "nombre": "Usuario 1",
+      "correo": "usuario1@example.com"
+    }
+}</code></pre>
   <h2>Obtener un usuario por ID</h2>
   <p><strong>Endpoint:</strong> <code>GET https://ncback-production.up.railway.app/api/usuarios/user/:id</code></p>
   <p>Este endpoint se utiliza para obtener un usuario específico por su ID.</p>
@@ -93,12 +71,12 @@ Ctrl + c # finaliza el programa</code></pre>
     <li><code>id</code> (string, obligatorio): ID del usuario a buscar.</li>
   </ul>
   <p><strong>Respuesta exitosa:</strong> Código de estado <code>200 OK</code>.</p>
+  <p><strong>Ejemplo de respuesta:</strong></p>
   <pre><code>{
   "id": "1",
   "nombre": "Usuario 1",
   "correo": "usuario1@example.com"
 }</code></pre>
-
   <h2>Crear un nuevo usuario</h2>
   <p><strong>Endpoint:</strong> <code>POST https://ncback-production.up.railway.app/api/usuarios</code></p>
   <p>Este endpoint se utiliza para crear un nuevo usuario.</p>
@@ -109,10 +87,16 @@ Ctrl + c # finaliza el programa</code></pre>
     <li><code>contrasena</code> (string, obligatorio): Contraseña del usuario.</li>
   </ul>
   <p><strong>Respuesta exitosa:</strong> Código de estado <code>201 Created</code>.</p>
+  <p><strong>Ejemplo de petición:</strong></p>
+  <pre><code>{
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
+}</code></pre>
+  <p><strong>Ejemplo de respuesta:</strong></p>
   <pre><code>{
   "mensaje": "El usuario ha sido creado correctamente"
 }</code></pre>
-
   <h2>Actualizar un usuario</h2>
   <p><strong>Endpoint:</strong> <code>PUT https://ncback-production.up.railway.app/api/usuarios/:id</code></p>
   <p>Este endpoint se utiliza para actualizar los datos de un usuario existente.</p>
@@ -127,12 +111,18 @@ Ctrl + c # finaliza el programa</code></pre>
     <li><code>contrasena</code> (string, opcional): Nueva contraseña del usuario.</li>
   </ul>
   <p><strong>Respuesta exitosa:</strong> Código de estado <code>200 OK</code>.</p>
+  <p><strong>Ejemplo de petición:</strong></p>
+  <pre><code>{
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
+}</code></pre>
+  <p><strong>Ejemplo de respuesta:</strong></p>
   <pre><code>{
   "id": "1",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
 }</code></pre>
-
   <h2>Eliminar un usuario</h2>
   <p><strong>Endpoint:</strong> <code>DELETE https://ncback-production.up.railway.app/api/usuarios/:id</code></p>
   <p>Este endpoint se utiliza para eliminar un usuario.</p>
@@ -141,9 +131,9 @@ Ctrl + c # finaliza el programa</code></pre>
     <li><code>id</code> (string, obligatorio): ID del usuario a eliminar.</li>
   </ul>
   <p><strong>Respuesta exitosa:</strong> Código de estado <code>200 OK</code>.</p>
+  <p><strong>Ejemplo de respuesta:</strong></p>
   <pre><code>{
   "mensaje": "Usuario eliminado exitosamente"
 }</code></pre>
 </body>
 </html>
-
