@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Documentación de la API</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
+      margin: 20px;
     }
 
     h1 {
@@ -16,39 +14,42 @@
     }
 
     h2 {
-      margin-bottom: 10px;
-      text-align: left;
+      margin-top: 30px;
     }
 
     p {
-      text-align: left;
+      margin-bottom: 10px;
     }
 
     pre {
       background-color: #f5f5f5;
       padding: 10px;
-      overflow-x: auto;
+      border-radius: 5px;
+      overflow: auto;
     }
 
     code {
-      font-family: "Courier New", Courier, monospace;
+      font-family: Consolas, monospace;
+    }
+
+    pre code {
+      display: block;
     }
   </style>
 </head>
+
 <body>
   <h1>Verificar las variables de entorno</h1>
-  <p>Para la correcta conexión a MongoDB, colocar el link correcto.</p>
-  <p><code>MONGODB_URI</code> contiene el link a mi MongoDB</p>
+  <p>Para la correcta conexión a MongoDB, colocar el link correcto. MONGODB_URI contiene el link a mi MongoDB.</p>
 
   <h2>MODELO</h2>
   <p>El modelo de ejemplo solo contiene el dato nombre y correo.</p>
 
   <h2>Scripts</h2>
-  <pre><code>
-npm run tsc # transpila el codigo
+  <pre><code>npm run tsc # transpila el código
 npm start # inicia el programa
 Ctrl + c # finaliza el programa
-  </code></pre>
+</code></pre>
 
   <h1>Documentación de la API</h1>
 
@@ -93,9 +94,11 @@ Ctrl + c # finaliza el programa
 }</code></pre>
   <p><strong>Ejemplo de respuesta:</strong></p>
   <pre><code>{
-  "id": "1",
-  "nombre": "Usuario 1",
-  "correo": "usuario1@example.com"
+  {
+    "id": "1",
+    "nombre": "Usuario 1",
+    "correo": "usuario1@example.com"
+  }
 }</code></pre>
 
   <h2>Obtener un usuario por ID</h2>
@@ -174,4 +177,5 @@ Ctrl + c # finaliza el programa
   "mensaje": "Usuario eliminado exitosamente"
 }</code></pre>
 </body>
+
 </html>
