@@ -85,6 +85,14 @@ Respuesta exitosa:
 
 * Código de estado: 200 OK
 
+Ejemplo de petición:
+
+```
+{
+  "correo": "nuevo.correo@example.com"
+}
+```
+
 Ejemplo de respuesta:
 
 ```
@@ -147,6 +155,16 @@ Respuesta exitosa:
 
 * Código de estado: 201 Created
 
+Ejemplo de petición:
+
+```
+{
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com"
+  "contrasena": "password",
+}
+```
+
 Ejemplo de respuesta:
 
 ```
@@ -179,6 +197,16 @@ Parámetros de cuerpo de la solicitud:
 Respuesta exitosa:
 
 * Código de estado: 200 OK
+
+Ejemplo de petición:
+
+```
+{
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com"
+  "contrasena": "password",
+}
+```
 
 Ejemplo de respuesta:
 
