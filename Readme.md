@@ -20,9 +20,9 @@ Ctrl + c #finaliza el programa
 EN PROCESO
 
 
-## Documentación de la API
+# Documentación de la API
 
-# Obtener todos los usuarios
+## Obtener todos los usuarios
 
 Endpoint:
 
@@ -66,7 +66,7 @@ Ejemplo de respuesta:
 }
 ```
 
-# Obtener un usaurio por correo
+## Obtener un usaurio por correo
 
 Endpoint:
 
@@ -97,7 +97,7 @@ Ejemplo de respuesta:
 }
 ```
 
-# Obtener un usuario por ID
+## Obtener un usuario por ID
 
 Endpoint:
 
@@ -126,7 +126,7 @@ Ejemplo de respuesta:
 }
 ```
 
-# Crear un nuevo usuario
+## Crear un nuevo usuario
 
 Endpoint:
 
@@ -155,7 +155,7 @@ Ejemplo de respuesta:
 }
 ```
 
-# Actualizar un usuario
+## Actualizar un usuario
 
 Endpoint:
 
@@ -190,7 +190,7 @@ Ejemplo de respuesta:
 }
 ```
 
-# Eliminar un usuario
+## Eliminar un usuario
 
 Endpoint:
 
