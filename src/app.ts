@@ -1,9 +1,7 @@
-// import dotenv from "dotenv";
-import server from "./server/server";
-import mongoose from "mongoose";
+import dotenv from 'dotenv'
+import Server from './server/server'
 
-// dotenv.config();
-mongoose.set('strictQuery', true);
-const Server = new server();
+dotenv.config()
 
-Server.listen();
+const server: Server = new Server()
+server.listen()

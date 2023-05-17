@@ -1,47 +1,49 @@
-import Express from "express";
-import cors from "cors";
-import dbConnection from "../db/connection";
-import router from "../routes/userRouter";
-const {port} = require("../config");
-// const port = 3000;
+import express from 'express'
+import cors from 'cors'
+import dbConnection from '../database/dbConnection'
+import router from '../routes/user.routes'
 
-const app = Express();
-const userPath = "/api/user";
-// const authPath = "/api/auth";
+class Server {
+  private app: express.Application
+  private port: string
+  private usuariosPath: string
 
-class server{
-    listen() {
-        app.listen(port, () =>{
-            console.log(`Server listening on port ${port}`);
-        });
-    }
+  constructor() {
+    this.app = express()
+    this.port = process.env.PORT || '3000'
+    // Define ruta de mis usuarios
+    this.usuariosPath = '/api/usuarios'
+    // Conectar a base de datos
+    this.conectarDB()
+    // Middlewares
+    this.middlewares()
+    // Rutas de mi aplicacion
+    this.routes()
+  }
 
-    middlewares(){
-        app.use(cors());
-        app.use(Express.json());
-        app.use(Express.static("public"));
-    }
+  async conectarDB() {
+    await dbConnection()
+  }
 
-    routes() {
-        //en esta middleware se define  la ruta y en que carpeta estan
-        // app.use(authPath, routerAuth)
-        app.use(userPath, router)
-    }
+  middlewares() {
+    this.app.use(express.static('src/public'))
+    // serializa objetos json
+    this.app.use(express.json())
+    // permite la conexion de otros servidores
+    this.app.use(cors())
+  }
 
-    constructor(){
+  routes() {
+    // en este middleware se definen las rutas
+    // ! router es una ruta de ejemplo, colocar la suya
+    this.app.use(this.usuariosPath, router)
+  }
 
-        connectDB();
-        this.middlewares;
-        this.routes;
-
-    }
-
+  listen() {
+    this.app.listen(this.port, () => {
+      console.log('servidor levantado en el puerto: ', this.port)
+    })
+  }
 }
 
-async function connectDB () {
-    dbConnection();
-}
-
-
-
-export default server;
+export default Server
