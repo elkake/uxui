@@ -24,7 +24,7 @@ Ninguno.
 
 ### Ejemplo de respuesta:
 ```json
-`[
+[
   {
     "id": "1",
     "nombre": "Usuario 1",
@@ -254,5 +254,5 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
