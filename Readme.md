@@ -23,28 +23,9 @@ Ninguno.
 -   Tipo de contenido: json
 
 ### Respuesta no exitosa
-- Codigo de estado: 400
+- Código de estado: 400
+- Tipo de contenido: Json
 
-### Ejemplo de respuesta:
-```json
-[
-  {
-    "id": "1",
-    "nombre": "Usuario 1",
-    "correo": "usuario1@example.com"
-  },
-  {
-    "id": "2",
-    "nombre": "Usuario 2",
-    "correo": "usuario2@example.com"
-  },
-  {
-    "id": "3",
-    "nombre": "Usuario 3",
-    "correo": "usuario3@example.com"
-  }
-]
-```
 
 ## Obtener un usuario por correo
 
@@ -257,6 +238,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzE2OTE4NTU5LC0xNzExNjIxMzAxLDQ5Mz
-UwNDU0MV19
+eyJoaXN0b3J5IjpbMTEyNjY5MjgwNyw3MTY5MTg1NTksLTE3MT
+E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
