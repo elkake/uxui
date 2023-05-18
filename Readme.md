@@ -1,247 +1,344 @@
-# Verificar las variables de entorno
+# API de Usuarios
 
-Para la correcta conexion a MOngoDB
-colocar el link correcto.
+Esta API permite realizar operaciones relacionadas con usuarios, como obtener usuarios, crear usuarios, actualizar usuarios y eliminar usuarios.
 
-MONGODB_URI contiene el link a mi mongoDB
-
-## MODELO
-
-El modelo de ejemplo solo contiene el dato nombre y correo.
-
-## Scripts
-
-´´´
-npm run tsc # transpila el codigo
-npm start # inicia el programa
-Ctrl + c #finaliza el programa
-´´´
-
-EN PROCESO
+Ruta de la api > https://ncback-production.up.railway.app
 
 
-# Documentación de la API
 
 ## Obtener todos los usuarios
 
-Endpoint:
+Obtiene la lista de todos los usuarios registrados en el sistema.
 
-* GET
-* https://ncback-production.up.railway.app/api/usuarios
+-   Método: `GET`
+-   Ruta: `/api/usuarios/`
 
-Descripción:
+#### Parámetros de consulta
 
-* Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.
+Ninguno.
 
-Parámetros de consulta:
+#### Respuesta exitosa
 
-* Ninguno.
+-   Código de estado: `200 OK`
+-   Tipo de contenido: `Json`
 
-Respuesta exitosa:
-
-* Código de estado: 200 OK
-
-Ejemplo de respuesta:
-
+### Ejemplo de respuesta:
+```json
+[
+  {
+    "id": "1",
+    "nombre": "Usuario 1",
+    "correo": "usuario1@example.com"
+  },
+  {
+    "id": "2",
+    "nombre": "Usuario 2",
+    "correo": "usuario2@example.com"
+  },
+  {
+    "id": "3",
+    "nombre": "Usuario 3",
+    "correo": "usuario3@example.com"
+  }
+]
 ```
+
+### Respuesta no exitosa
+
+- Código de estado: `404 Not Found`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
 {
-  "total": 3,
-  "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Usuario 1",
-      "correo": "usuario1@example.com"
-    },
-    {
-      "id": "2",
-      "nombre": "Usuario 2",
-      "correo": "usuario2@example.com"
-    },
-    {
-      "id": "3",
-      "nombre": "Usuario 3",
-      "correo": "usuario3@example.com"
-    }
-  ]
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
-## Obtener un usaurio por correo
+## Obtener un usuario por correo
 
-Endpoint:
+Obtiene un usuario específico por su correo electrónico.
 
-* GET
-* https://ncback-production.up.railway.app/api/usuarios
+-   Método: GET
+-   Ruta: `/api/usuarios/`
 
-Descripción:
+#### Parámetros de consulta
 
-* Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.
+-   `correo` (string, opcional): Correo electrónico del usuario a buscar.
 
-Parámetros de consulta:
-
-- `correo` (string, obligatorio): correo del usuario a buscar.
-
-Respuesta exitosa:
-
-* Código de estado: 200 OK
-
-Ejemplo de petición:
-
-```
+### Ejemplo de petición:
+Body:
+```json
 {
+	"correo":"sadsad@email.com"
+}
+```
+
+#### Respuesta exitosa
+
+-   Código de estado: `200 OK`
+-   Tipo de contenido: `Json`
+
+### Ejemplo de respuesta:
+
+```json
+{
+  "id": "4",
+  "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
 }
 ```
 
-Ejemplo de respuesta:
+### Respuesta no exitosa
 
-```
+- Código de estado: `404 Not Found`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
 {
-    {
-      "id": "1",
-      "nombre": "Usuario 1",
-      "correo": "usuario1@example.com"
-    }
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
-## Obtener un usuario por ID
+## Obtener usuario por id
 
-Endpoint:
+Trae los datos de un usuario especifico por su id
 
-* GET
-* https://ncback-production.up.railway.app/api/usuarios/user/:id
+- Método: `GET`
+- Ruta: `/api/usuarios/user/:id`
 
-Descripción:
-
-* Este endpoint se utiliza para obtener un usuario específico por su ID.
-
-Parámetros de ruta:
+### Parámetros de ruta
 
 - `id` (string, obligatorio): ID del usuario a buscar.
 
-Respuesta exitosa:
+### Ejemplo de peticion:
 
-* Código de estado: 200 OK
+Params:
 
-Ejemplo de respuesta:
+- `/api/usuarios/user/646523b0bb4be194b9207c02`
 
-```
+### Respuesta exitosa
+
+ - Código de estado: `200 Ok`
+ - Tipo de contenido: `Json`
+
+### Ejemplo de respuesta
+
+```json
 {
-  "id": "1",
-  "nombre": "Usuario 1",
-  "correo": "usuario1@example.com"
+	"nombre" : "pepito",
+	"correo" : "pepito@email.com",
+	"contrasena" : "password"
 }
 ```
 
+### Respuesta no exitosa
+
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
+}
+```
+
+## CheckLogin
+
+Esta ruta se utiliza para realizar la verificación de inicio de sesión de un usuario.
+
+- Método: `POST`
+- Ruta: `/api/usuarios/loginm`
+
+### Parámetros de la solicitud
+
+ - `nombre`(string, obligatorio): Nombre del usuario.
+ - `contrasena`(string, obligatorio): Contraseña del usuario
+
+### Ejemplo de petición:
+
+Body:
+```json
+{
+	"correo": "sadsad@email.com",
+	"contrasena":"password"
+}
+```
+
+### Respuesta exitosa
+
+- Código de estado: `200 Ok`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta:
+```json
+{
+	"mensaje" : "Ingreso exitoso"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `401 Unauthorized`,`404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "La  contraseña del ususario no coincide"
+}
+```
 ## Crear un nuevo usuario
 
-Endpoint:
+Crea un nuevo usuario.
 
-* POST
-* https://ncback-production.up.railway.app/api/usuarios
+-   Método: `POST`
+-   Ruta: `/api/usuarios/`
 
-Descripción:
+#### Parámetros de cuerpo de la solicitud
 
-* Este endpoint se utiliza para crear un nuevo usuario.
+-   `nombre` (string, obligatorio): Nombre del usuario.
+-   `correo` (string, obligatorio): Correo electrónico del usuario.
+-   `contrasena` (string, obligatorio): Contraseña del usuario.
 
-Parámetros de cuerpo de la solicitud:
+### Ejemplo de petición:
 
-- `nombre` (string, obligatorio): Nombre del usuario.
-- `correo` (string, obligatorio): Correo electrónico del usuario.
-- `contrasena` (string, obligatorio): Contraseña del usuario.
-
-Respuesta exitosa:
-
-* Código de estado: 201 Created
-
-Ejemplo de petición:
-
-```
+Body:
+```json
 {
   "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-  "contrasena": "password",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
 }
 ```
 
-Ejemplo de respuesta:
+#### Respuesta exitosa
 
-```
+-   Código de estado: `201 Created`
+-   Tipo de contenido: `Json`
+
+### Ejemplo de respuesta:
+```json
 {
-  "mensaje": "El usuario ha sido creado correctamente"
+  "id": "4",
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `409 Conflict`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "El correo electrónico ya está registrado"
 }
 ```
 
 ## Actualizar un usuario
 
-Endpoint:
+Actualiza los datos de un usuario existente.
 
-* PUT
-* https://ncback-production.up.railway.app/api/usuarios/:id
+-   Método: `PUT`
+-   Ruta: `/api/usuarios/:id`
 
-Descripción:
+#### Parámetros de ruta
 
-* Este endpoint se utiliza para actualizar los datos de un usuario existente.
+-   `id` (string, obligatorio): ID del usuario a actualizar.
 
-Parámetros de ruta:
+#### Parámetros de cuerpo de la solicitud
 
-- `id` (string, obligatorio): ID del usuario a actualizar.
+-   `nombre` (string, opcional): Nuevo nombre del usuario.
+-   `correo` (string, opcional): Nuevo correo electrónico del usuario.
+-   `contrasena` (string, opcional): Nueva contraseña del usuario.
 
-Parámetros de cuerpo de la solicitud:
+### Ejemplo de petición:
 
-- `nombre` (string, opcional): Nuevo nombre del usuario.
-- `correo` (string, opcional): Nuevo correo electrónico del usuario.
-- `contrasena` (string, opcional): Nueva contraseña del usuario.
+Params:
+- `/api/usuarios/646523b0bb4be194b9207c02`
 
-Respuesta exitosa:
-
-* Código de estado: 200 OK
-
-Ejemplo de petición:
-
-```
+Body:
+```json
 {
   "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-  "contrasena": "password",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
 }
 ```
 
-Ejemplo de respuesta:
+#### Respuesta exitosa
 
-```
+-   Código de estado: `200 OK`
+-   Tipo de contenido: `Json`
+
+### Ejemplo de respuesta:
+```json
 {
-  "id": "1",
+  "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
 ## Eliminar un usuario
 
-Endpoint:
+Elimina un usuario existente.
 
-* DELETE
-* https://ncback-production.up.railway.app/api/usuarios/:id
+-   Método: `DELETE`
+-   Ruta: `/api/usuarios/:id`
 
-Descripción:
+#### Parámetros de ruta
 
-* Este endpoint se utiliza para eliminar un usuario.
+-   `id` (string, obligatorio): ID del usuario a eliminar.
 
-Parámetros de ruta:
+### Ejemplo de petición: 
 
-- `id` (string, obligatorio): ID del usuario a eliminar.
+Params:
+-  `/api/usuarios/646523b0bb4be194b9207c02`
 
-Respuesta exitosa:
+#### Respuesta exitosa
 
-* Código de estado: 200 OK
+-   Código de estado: 200 OK
+-   Tipo de contenido: application/json
 
-Ejemplo de respuesta:
-
-```
+### Ejemplo de respuesta:
+```json
 {
   "mensaje": "Usuario eliminado exitosamente"
 }
 ```
- 
+
+### Respuesta no exitosa
+
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
+}
+```
+---
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIzNTg4MTkwMSw3MTY5MTg1NTksLTE3MT
+E2MjEzMDEsNDkzNTA0NTQxXX0=
+-->
