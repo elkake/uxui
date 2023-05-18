@@ -287,13 +287,13 @@ Body:
 
 ### Respuesta no exitosa
 
-- Códigos de estado: `404 `, `500 Internal Server Error`
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
 - Tipo de contenido: `Json`
 
 ### Ejemplo de respuesta no exitosa
 ```json
 {
-	"mensaje" : "El correo electrónico ya está registrado"
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
@@ -308,16 +308,15 @@ Elimina un usuario existente.
 
 -   `id` (string, obligatorio): ID del usuario a eliminar.
 
-#### Respuesta exitosa
-
--   Código de estado: 200 OK
--   Tipo de contenido: application/json
-
 ### Ejemplo de petición: 
 
 Params:
 -  `/api/usuarios/646523b0bb4be194b9207c02`
 
+#### Respuesta exitosa
+
+-   Código de estado: 200 OK
+-   Tipo de contenido: application/json
 
 ### Ejemplo de respuesta:
 ```json
@@ -325,9 +324,21 @@ Params:
   "mensaje": "Usuario eliminado exitosamente"
 }
 ```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
+}
+```
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDI4MzU3ODYsNzE2OTE4NTU5LC0xNz
-ExNjIxMzAxLDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbLTIzNTg4MTkwMSw3MTY5MTg1NTksLTE3MT
+E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
