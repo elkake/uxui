@@ -187,7 +187,7 @@ Body:
 ### Ejemplo de respuesta no exitosa
 ```json
 {
-	"mensaje" : "Usuario no encontrado"
+	"mensaje" : "La  contraseña"
 }
 ```
 ## Crear un nuevo usuario
@@ -303,6 +303,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTU0MDY0NzIsNzE2OTE4NTU5LC0xNz
-ExNjIxMzAxLDQ5MzUwNDU0MV19
+eyJoaXN0b3J5IjpbMTY0MzUxNjgyOCw3MTY5MTg1NTksLTE3MT
+E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
