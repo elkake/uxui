@@ -22,6 +22,8 @@ Ninguno.
 -   Código de estado: 200 OK
 -   Tipo de contenido: json
 
+### 
+
 ### Ejemplo de respuesta:
 ```json
 [
@@ -254,5 +256,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MTE2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTI2MTE2OTg0NiwtMTcxMTYyMTMwMSw0OT
+M1MDQ1NDFdfQ==
 -->
