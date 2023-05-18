@@ -203,10 +203,21 @@ Crea un nuevo usuario.
 -   `correo` (string, obligatorio): Correo electrónico del usuario.
 -   `contrasena` (string, obligatorio): Contraseña del usuario.
 
+### Ejemplo de petición:
+
+Body:
+```json
+{
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
+}
+```
+
 #### Respuesta exitosa
 
--   Código de estado: 201 Created
--   Tipo de contenido: json
+-   Código de estado: `201 Created`
+-   Tipo de contenido: `Json`
 
 ### Ejemplo de respuesta:
 ```json
@@ -214,6 +225,18 @@ Crea un nuevo usuario.
   "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `409 Conflict`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "El correo electrónico ya está registrado"
 }
 ```
 
@@ -293,6 +316,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMzMwODIwMiw3MTY5MTg1NTksLTE3MT
-E2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTE2MzI0NDM4MDMsNzE2OTE4NTU5LC0xNz
+ExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
