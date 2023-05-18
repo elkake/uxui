@@ -20,12 +20,39 @@ Ninguno.
 #### Respuesta exitosa
 
 -   Código de estado: 200 OK
--   Tipo de contenido: json
+-   Tipo de contenido: Json
+
+### Ejemplo de respuesta:
+```json
+[
+  {
+    "id": "1",
+    "nombre": "Usuario 1",
+    "correo": "usuario1@example.com"
+  },
+  {
+    "id": "2",
+    "nombre": "Usuario 2",
+    "correo": "usuario2@example.com"
+  },
+  {
+    "id": "3",
+    "nombre": "Usuario 3",
+    "correo": "usuario3@example.com"
+  }
+]
+```
 
 ### Respuesta no exitosa
 - Código de estado: 400
 - Tipo de contenido: Json
 
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
+}
+```
 
 ## Obtener un usuario por correo
 
@@ -238,6 +265,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTEyNjY5MjgwNyw3MTY5MTg1NTksLTE3MT
-E2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbMjg4MzI2MjUsNzE2OTE4NTU5LC0xNzExNj
+IxMzAxLDQ5MzUwNDU0MV19
 -->
