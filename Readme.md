@@ -187,7 +187,7 @@ Body:
 ### Ejemplo de respuesta no exitosa
 ```json
 {
-	"mensaje" : "La  contraseña"
+	"mensaje" : "La  contraseña del ususario no coincide"
 }
 ```
 ## Crear un nuevo usuario
@@ -208,16 +208,6 @@ Crea un nuevo usuario.
 -   Código de estado: 201 Created
 -   Tipo de contenido: json
 
-### Ejemplo de petición:
-
-Body:
-```json
-{
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com",
-  "contrasena": "password"
-}
-```
 ### Ejemplo de respuesta:
 ```json
 {
@@ -303,6 +293,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTY0MzUxNjgyOCw3MTY5MTg1NTksLTE3MT
+eyJoaXN0b3J5IjpbLTIxMzMwODIwMiw3MTY5MTg1NTksLTE3MT
 E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
