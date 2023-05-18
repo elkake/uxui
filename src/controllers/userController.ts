@@ -62,7 +62,7 @@ export async function checkLogin(req: Request, res: Response) {
     if (contrasena !== user.contrasena) {
       return res
         .status(401)
-        .json({ mensaje: 'La contrasena del usuario no existe' })
+        .json({ mensaje: 'La contrasena del usuario no coincide' })
     }
     return res.status(200).json({ mensaje: 'Ingreso exitoso' })
   } catch (error) {
