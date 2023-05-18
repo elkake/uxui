@@ -112,16 +112,16 @@ Trae los datos de un usuario especifico por su id
 
 - `id` (string, obligatorio): ID del usuario a buscar.
 
-### Respuesta exitosa
-
- - Código de estado: 200 Ok
- - Tipo de contenido: json
-
 ### Ejemplo de peticion:
 
 Params:
 
 - `/api/usuarios/user/646523b0bb4be194b9207c02`
+
+### Respuesta exitosa
+
+ - Código de estado: `200 Ok`
+ - Tipo de contenido: `Json`
 
 ### Ejemplo de respuesta
 
@@ -130,6 +130,18 @@ Params:
 	"nombre" : "pepito",
 	"correo" : "pepito@email.com",
 	"contrasena" : "password"
+}
+```
+
+### Respuesta no exitosa
+
+- Código de estado: `404 Not Found`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
@@ -279,6 +291,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTE3NTM0NDMxLDcxNjkxODU1OSwtMTcxMT
-YyMTMwMSw0OTM1MDQ1NDFdfQ==
+eyJoaXN0b3J5IjpbMTAzNjQzNjA3Niw3MTY5MTg1NTksLTE3MT
+E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
