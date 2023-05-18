@@ -257,11 +257,6 @@ Actualiza los datos de un usuario existente.
 -   `correo` (string, opcional): Nuevo correo electrónico del usuario.
 -   `contrasena` (string, opcional): Nueva contraseña del usuario.
 
-#### Respuesta exitosa
-
--   Código de estado: 200 OK
--   Tipo de contenido: json
-
 ### Ejemplo de petición:
 
 Params:
@@ -276,12 +271,29 @@ Body:
 }
 ```
 
+#### Respuesta exitosa
+
+-   Código de estado: `200 OK`
+-   Tipo de contenido: `Json`
+
 ### Ejemplo de respuesta:
 ```json
 {
   "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `404 `, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "El correo electrónico ya está registrado"
 }
 ```
 
@@ -316,6 +328,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2MzI0NDM4MDMsNzE2OTE4NTU5LC0xNz
+eyJoaXN0b3J5IjpbLTExNDI4MzU3ODYsNzE2OTE4NTU5LC0xNz
 ExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
