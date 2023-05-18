@@ -1,218 +1,223 @@
-# Verificar las variables de entorno
+# API de Usuarios
 
-Para la correcta conexion a MOngoDB
-colocar el link correcto.
+Esta API permite realizar operaciones relacionadas con usuarios, como obtener usuarios, crear usuarios, actualizar usuarios y eliminar usuarios.
 
-MONGODB_URI contiene el link a mi mongoDB
-
-## MODELO
-
-El modelo de ejemplo solo contiene el dato nombre y correo.
-
-## Scripts
-
-´´´
-npm run tsc # transpila el codigo
-npm start # inicia el programa
-Ctrl + c #finaliza el programa
-´´´
-
-EN PROCESO
+Ruta de la api > https://ncback-production.up.railway.app
 
 
-# Documentación de la API
 
 ## Obtener todos los usuarios
 
-Endpoint:
+Obtiene la lista de todos los usuarios registrados en el sistema.
 
-* GET
-* https://ncback-production.up.railway.app/api/usuarios
+-   Método: GET
+-   Ruta: `/api/usuarios/`
 
-Descripción:
+#### Parámetros de consulta
 
-* Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.
+Ninguno.
 
-Parámetros de consulta:
+#### Respuesta exitosa
 
-* Ninguno.
+-   Código de estado: 200 OK
+-   Tipo de contenido: json
 
-Respuesta exitosa:
-
-* Código de estado: 200 OK
-
-Ejemplo de respuesta:
-
+### Ejemplo de respuesta:
+```json
+`[
+  {
+    "id": "1",
+    "nombre": "Usuario 1",
+    "correo": "usuario1@example.com"
+  },
+  {
+    "id": "2",
+    "nombre": "Usuario 2",
+    "correo": "usuario2@example.com"
+  },
+  {
+    "id": "3",
+    "nombre": "Usuario 3",
+    "correo": "usuario3@example.com"
+  }
+]
 ```
+
+## Obtener un usuario por correo
+
+Obtiene un usuario específico por su correo electrónico.
+
+-   Método: GET
+-   Ruta: `/api/usuarios/`
+
+#### Parámetros de consulta
+
+-   `correo` (string, opcional): Correo electrónico del usuario a buscar.
+
+#### Respuesta exitosa
+
+-   Código de estado: 200 OK
+-   Tipo de contenido: json
+
+### Ejemplo de petición:
+Body:
+```json
 {
-  "total": 3,
-  "usuarios": [
-    {
-      "id": "1",
-      "nombre": "Usuario 1",
-      "correo": "usuario1@example.com"
-    },
-    {
-      "id": "2",
-      "nombre": "Usuario 2",
-      "correo": "usuario2@example.com"
-    },
-    {
-      "id": "3",
-      "nombre": "Usuario 3",
-      "correo": "usuario3@example.com"
-    }
-  ]
+	"correo":"sadsad@email.com"
 }
 ```
+### Ejemplo de respuesta:
 
-## Obtener un usaurio por correo
-
-Endpoint:
-
-* GET
-* https://ncback-production.up.railway.app/api/usuarios
-
-Descripción:
-
-* Este endpoint se utiliza para obtener la lista de todos los usuarios registrados en el sistema.
-
-Parámetros de consulta:
-
-- `correo` (string, obligatorio): correo del usuario a buscar.
-
-Respuesta exitosa:
-
-* Código de estado: 200 OK
-
-Ejemplo de petición:
-
-```
+```json
 {
+  "id": "4",
+  "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
 }
 ```
 
-Ejemplo de respuesta:
+## Obtener usuario por id
 
-```
-{
-    {
-      "id": "1",
-      "nombre": "Usuario 1",
-      "correo": "usuario1@example.com"
-    }
-}
-```
+Trae los datos de un usuario especifico por su id
 
-## Obtener un usuario por ID
+- Método: `GET`
+- Ruta: `/api/usuarios/user/:id`
 
-Endpoint:
-
-* GET
-* https://ncback-production.up.railway.app/api/usuarios/user/:id
-
-Descripción:
-
-* Este endpoint se utiliza para obtener un usuario específico por su ID.
-
-Parámetros de ruta:
+### Parámetros de ruta
 
 - `id` (string, obligatorio): ID del usuario a buscar.
 
-Respuesta exitosa:
+### Respuesta exitosa
 
-* Código de estado: 200 OK
+ - Código de estado: 200 Ok
+ - Tipo de contenido: json
 
-Ejemplo de respuesta:
+### Ejemplo de peticion:
 
-```
+Params:
+
+- `/api/usuarios/user/646523b0bb4be194b9207c02`
+
+### Ejemplo de respuesta
+
+```json
 {
-  "id": "1",
-  "nombre": "Usuario 1",
-  "correo": "usuario1@example.com"
+	"nombre" : "pepito",
+	"correo" : "pepito@email.com",
+	"contrasena" : "password"
 }
 ```
 
+## CheckLogin
+
+Esta ruta se utiliza para realizar la verificación de inicio de sesión de un usuario.
+
+- Método: `POST`
+- Ruta: `/api/usuarios/loginm`
+
+### Parámetros de la solicitud
+
+ - `nombre`(string, obligatorio): Nombre del usuario.
+ - `contrasena`(string, obligatorio): Contraseña del usuario
+
+### Respuesta exitosa
+
+- Código de estado: 200 Ok
+- Tipo de contenido: json
+
+### Ejemplo de petición:
+
+Body:
+```json
+{
+	"correo": "sadsad@email.com",
+	"contrasena":"password"
+}
+```
+
+### Ejemplo de respuesta:
+```json
+{
+	"mensaje" : "Ingreso exitoso"
+}
+```
 ## Crear un nuevo usuario
 
-Endpoint:
+Crea un nuevo usuario.
 
-* POST
-* https://ncback-production.up.railway.app/api/usuarios
+-   Método: `POST`
+-   Ruta: `/api/usuarios/`
 
-Descripción:
+#### Parámetros de cuerpo de la solicitud
 
-* Este endpoint se utiliza para crear un nuevo usuario.
+-   `nombre` (string, obligatorio): Nombre del usuario.
+-   `correo` (string, obligatorio): Correo electrónico del usuario.
+-   `contrasena` (string, obligatorio): Contraseña del usuario.
 
-Parámetros de cuerpo de la solicitud:
+#### Respuesta exitosa
 
-- `nombre` (string, obligatorio): Nombre del usuario.
-- `correo` (string, obligatorio): Correo electrónico del usuario.
-- `contrasena` (string, obligatorio): Contraseña del usuario.
+-   Código de estado: 201 Created
+-   Tipo de contenido: json
 
-Respuesta exitosa:
+### Ejemplo de petición:
 
-* Código de estado: 201 Created
-
-Ejemplo de petición:
-
-```
+Body:
+```json
 {
   "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-  "contrasena": "password",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
 }
 ```
-
-Ejemplo de respuesta:
-
-```
+### Ejemplo de respuesta:
+```json
 {
-  "mensaje": "El usuario ha sido creado correctamente"
+  "id": "4",
+  "nombre": "Nuevo Nombre",
+  "correo": "nuevo.correo@example.com"
 }
 ```
 
 ## Actualizar un usuario
 
-Endpoint:
+Actualiza los datos de un usuario existente.
 
-* PUT
-* https://ncback-production.up.railway.app/api/usuarios/:id
+-   Método: `PUT`
+-   Ruta: `/api/usuarios/:id`
 
-Descripción:
+#### Parámetros de ruta
 
-* Este endpoint se utiliza para actualizar los datos de un usuario existente.
+-   `id` (string, obligatorio): ID del usuario a actualizar.
 
-Parámetros de ruta:
+#### Parámetros de cuerpo de la solicitud
 
-- `id` (string, obligatorio): ID del usuario a actualizar.
+-   `nombre` (string, opcional): Nuevo nombre del usuario.
+-   `correo` (string, opcional): Nuevo correo electrónico del usuario.
+-   `contrasena` (string, opcional): Nueva contraseña del usuario.
 
-Parámetros de cuerpo de la solicitud:
+#### Respuesta exitosa
 
-- `nombre` (string, opcional): Nuevo nombre del usuario.
-- `correo` (string, opcional): Nuevo correo electrónico del usuario.
-- `contrasena` (string, opcional): Nueva contraseña del usuario.
+-   Código de estado: 200 OK
+-   Tipo de contenido: json
 
-Respuesta exitosa:
+### Ejemplo de petición:
 
-* Código de estado: 200 OK
+Params:
+- `/api/usuarios/646523b0bb4be194b9207c02`
 
-Ejemplo de petición:
-
-```
+Body:
+```json
 {
   "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-  "contrasena": "password",
+  "correo": "nuevo.correo@example.com",
+  "contrasena": "password"
 }
 ```
 
-Ejemplo de respuesta:
-
-```
+### Ejemplo de respuesta:
+```json
 {
-  "id": "1",
+  "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
 }
@@ -220,28 +225,34 @@ Ejemplo de respuesta:
 
 ## Eliminar un usuario
 
-Endpoint:
+Elimina un usuario existente.
 
-* DELETE
-* https://ncback-production.up.railway.app/api/usuarios/:id
+-   Método: `DELETE`
+-   Ruta: `/api/usuarios/:id`
 
-Descripción:
+#### Parámetros de ruta
 
-* Este endpoint se utiliza para eliminar un usuario.
+-   `id` (string, obligatorio): ID del usuario a eliminar.
 
-Parámetros de ruta:
+#### Respuesta exitosa
 
-- `id` (string, obligatorio): ID del usuario a eliminar.
+-   Código de estado: 200 OK
+-   Tipo de contenido: application/json
 
-Respuesta exitosa:
+### Ejemplo de petición: 
 
-* Código de estado: 200 OK
+Params:
+-  `/api/usuarios/646523b0bb4be194b9207c02`
 
-Ejemplo de respuesta:
 
-```
+### Ejemplo de respuesta:
+```json
 {
   "mensaje": "Usuario eliminado exitosamente"
 }
 ```
- 
+---
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNDkzNTA0NTQxXX0=
+-->
