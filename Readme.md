@@ -135,7 +135,7 @@ Params:
 
 ### Respuesta no exitosa
 
-- Código de estado: `404 Not Found`
+- Códigos de estado: `404 Not Found`, `500 Internal Server Error`
 - Tipo de contenido: `Json`
 
 ### Ejemplo de respuesta no exitosa
@@ -291,6 +291,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTAzNjQzNjA3Niw3MTY5MTg1NTksLTE3MT
+eyJoaXN0b3J5IjpbLTU1NzQwMjg4MCw3MTY5MTg1NTksLTE3MT
 E2MjEzMDEsNDkzNTA0NTQxXX0=
 -->
