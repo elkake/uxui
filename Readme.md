@@ -157,11 +157,6 @@ Esta ruta se utiliza para realizar la verificación de inicio de sesión de un u
  - `nombre`(string, obligatorio): Nombre del usuario.
  - `contrasena`(string, obligatorio): Contraseña del usuario
 
-### Respuesta exitosa
-
-- Código de estado: 200 Ok
-- Tipo de contenido: json
-
 ### Ejemplo de petición:
 
 Body:
@@ -172,10 +167,27 @@ Body:
 }
 ```
 
+### Respuesta exitosa
+
+- Código de estado: `200 Ok`
+- Tipo de contenido: `Json`
+
 ### Ejemplo de respuesta:
 ```json
 {
 	"mensaje" : "Ingreso exitoso"
+}
+```
+
+### Respuesta no exitosa
+
+- Códigos de estado: `401 Unauthorized`,`404 Not Found`, `500 Internal Server Error`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 ## Crear un nuevo usuario
@@ -291,6 +303,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU1NzQwMjg4MCw3MTY5MTg1NTksLTE3MT
-E2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbLTE3MTU0MDY0NzIsNzE2OTE4NTU5LC0xNz
+ExNjIxMzAxLDQ5MzUwNDU0MV19
 -->
