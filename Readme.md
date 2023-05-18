@@ -76,8 +76,8 @@ Body:
 
 #### Respuesta exitosa
 
--   Código de estado: 200 OK
--   Tipo de contenido: json
+-   Código de estado: `200 OK`
+-   Tipo de contenido: `Json`
 
 ### Ejemplo de respuesta:
 
@@ -86,6 +86,18 @@ Body:
   "id": "4",
   "nombre": "Nuevo Nombre",
   "correo": "nuevo.correo@example.com"
+}
+```
+
+### Respuesta no exitosa
+
+- Código de estado: `404 Not Found`
+- Tipo de contenido: `Json`
+
+### Ejemplo de respuesta no exitosa
+```json
+{
+	"mensaje" : "Usuario no encontrado"
 }
 ```
 
@@ -267,6 +279,6 @@ Params:
 ---
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkzMjM2NTA3MCw3MTY5MTg1NTksLTE3MT
-E2MjEzMDEsNDkzNTA0NTQxXX0=
+eyJoaXN0b3J5IjpbMTE3NTM0NDMxLDcxNjkxODU1OSwtMTcxMT
+YyMTMwMSw0OTM1MDQ1NDFdfQ==
 -->
