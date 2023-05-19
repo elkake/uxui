@@ -1,106 +1,43 @@
 import { Request, Response } from 'express'
-import User from '../models/usuario'
-import usuario from '../models/usuario'
+import UserModel from '../models/usuario'
 
-export async function getUsers(res: Response) {
-  console.log('----Consultando----')
-
+export async function getUsers(req: Request, res: Response) {
   try {
+    // ?buscar por correo a traves del body
+    const { correo } = req.body
+
+    if (correo) {
+      console.log('----get User by correo----')
+      const usuario = await UserModel.findOne({ correo })
+      if (!usuario) {
+        return res.status(404).json({ mensaje: 'Usuario no encontrado' })
+      }
+      return res.status(200).json(usuario)
+    }
+
+    // ?buscar todos los usuarios
+    console.log('----get all Users----')
     const [total, usuarios] = await Promise.all([
-      User.countDocuments(),
-      User.find({})
+      UserModel.countDocuments(),
+      UserModel.find({})
     ])
 
     res.status(200).json({ total, usuarios })
-
-    console.log('get')
   } catch (error) {
-    console.log('Se presento un error consultando el usuario en la bd')
-    console.log(error)
-    res.status(400)
-  }
-}
-
-export async function getUserByEmail(
-  _req: Request,
-  res: Response,
-  correo: string
-) {
-  try {
-    console.log('-------------correo-------------')
-    console.log(correo)
-
-    // Buscar el usuario por su correo electrónico
-    const user = await usuario.findOne({ correo })
-
-    if (!user) {
-      return res.status(404).json({ mensaje: 'Usuario no encontrado' })
-    }
-
-    return res.status(200).json(user)
-  } catch (error) {
-    console.log('No se pudo obtener el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
-  }
-}
-
-export async function checkLogin(req: Request, res: Response) {
-  try {
-    const { correo, contrasena } = req.body
-    console.log('-------------correo y password-------------')
-    console.log(correo)
-
-    // Buscar el usuario por su correo electrónico
-    const user = await usuario.findOne({ correo })
-
-    if (!user) {
-      return res.status(404).json({ mensaje: 'Usuario no encontrado' })
-    }
-
-    if (contrasena !== user.contrasena) {
-      return res
-        .status(401)
-        .json({ mensaje: 'La contrasena del usuario no coincide' })
-    }
-    return res.status(200).json({ mensaje: 'Ingreso exitoso' })
-  } catch (error) {
-    console.log('No se pudo obtener el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
-  }
-}
-
-export async function getUserById(req: Request, res: Response) {
-  try {
-    const { id } = req.params
-    console.log('-------------id-------------')
-    console.log(id)
-
-    // Buscar el usuario por su correo electrónico
-    const user = await usuario.findById(id)
-
-    if (!user) {
-      return res.status(404).json({ mensaje: 'Usuario no encontrado' })
-    }
-
-    return res.status(200).json(user)
-  } catch (error) {
-    console.log('No se pudo obtener el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
+    res.status(400).json({
+      data: 'Se presento un error al obtener la lista de Usuarios',
+      error
+    })
   }
 }
 
 export async function createUsers(req: Request, res: Response) {
   try {
+    console.log('----create User----')
     const { nombre, correo, contrasena } = req.body
 
     // Verificar si el correo electrónico ya existe en la base de datos
-    const usuarioExistente = await usuario.findOne({ correo })
+    const usuarioExistente = await UserModel.findOne({ correo })
 
     if (usuarioExistente) {
       return res
@@ -109,27 +46,27 @@ export async function createUsers(req: Request, res: Response) {
     }
 
     // Crear el nuevo usuario
-    const user = new usuario({ nombre, correo, contrasena })
+    const user = new UserModel({ nombre, correo, contrasena })
     await user.save()
 
     return res
       .status(201)
       .json({ mensaje: 'El usuario ha sido creado correctamente' })
   } catch (error) {
-    console.log('No se pudo crear el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
+    res.status(500).json({
+      data: 'Se presento un error al crear el usuario',
+      error
+    })
   }
 }
 
 export async function updateUser(req: Request, res: Response) {
   try {
+    console.log('----Update Users----')
     const { id } = req.params
     const { nombre, correo, contrasena } = req.body
-    console.log(id)
 
-    const user = await usuario.findByIdAndUpdate(
+    const user = await UserModel.findByIdAndUpdate(
       id,
       { nombre, correo, contrasena },
       { new: true }
@@ -139,20 +76,23 @@ export async function updateUser(req: Request, res: Response) {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' })
     }
 
-    return res.status(200).json(user)
+    return res
+      .status(200)
+      .json({ msg: `Usuario con id: ${id} actualizado exitosamente` })
   } catch (error) {
-    console.log('No se pudo actualizar el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
+    res.status(500).json({
+      data: 'Se presento un error al actualizar el usuario',
+      error
+    })
   }
 }
 
 export async function deleteUser(req: Request, res: Response) {
   try {
+    console.log('----Delete User----')
     const { id } = req.params
 
-    const user = await usuario.findByIdAndDelete(id)
+    const user = await UserModel.findByIdAndDelete(id)
 
     if (!user) {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' })
@@ -160,9 +100,18 @@ export async function deleteUser(req: Request, res: Response) {
 
     return res.status(200).json({ mensaje: 'Usuario eliminado exitosamente' })
   } catch (error) {
-    console.log('No se pudo eliminar el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    return res.status(500).json({ mensaje: 'Error interno del servidor' })
+    res.status(500).json({
+      data: 'Se presento un error al eliminar el usuario',
+      error
+    })
   }
 }
+
+const userController = {
+  getUsers,
+  createUsers,
+  updateUser,
+  deleteUser
+}
+
+export default userController
