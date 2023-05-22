@@ -43,6 +43,7 @@ const usuarioSchema: Schema<Usuario> = new Schema({
 })
 
 usuarioSchema.methods.toJSON = function () {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { __v, _id, ...usuario } = this.toObject()
   usuario.id = _id
   return usuario

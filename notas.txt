@@ -1,0 +1,27 @@
+- testear, que una persona con un correo ingresado por google, no pueda registrarse de forma manual,viceversa.
+
+- aclara si una persona registrada manualmente, no puede registrarse por google.
+
+- verificar el tipado de cosas
+
+- buscar una manera de subir imagenes a un servidor y que me devuelva las Url
+
+-hacer una manera de editar contraseñas
+
+- testear que cualquiera pueda colocar su cuenta gmail
+
+- buscar una manera de verificar correo(preguntar antes, no creo que sea necesario de momento)
+
+*imagenes*
+
+--------------------------------OTRAS COSAS---------------------------------------
+
+- investigar sobre el tema de boxmap para la distancia entre 2 direcciones.
+
+- investigar sobre el tema de logueo con facebook  ( de ultima se quita).
+
+--------------------------------CAMBIOS A AVISAR ----------------------------------
+
+- se creo una nueva base de datos con el nombre de nocountryDB
+
+- arreglar la documentacion ( se cambion el loginm por login)
