@@ -90,7 +90,7 @@
           localStorage.setItem('correo', res.usuario.correo)
           // reload, recarga la pagina para que se vea el inicio de sesion
           //en caso querer ver el responso, quitar el reload antes.
-          location.reload()
+          window.location.reload()
         })
         .catch(console.warn)
     }
@@ -104,7 +104,7 @@
         // limpia el localstorage
         localStorage.removeItem('correo')
         // recarga la pagina y vacia cuaalquier cosa que tengamos en nuestra app
-        location.reload()
+        window.location.reload()
       })
     })
   </script>
