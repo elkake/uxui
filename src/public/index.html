@@ -107,19 +107,13 @@
         <pre><code class="success">
 [
   {
-    "id": "1",
-    "nombre": "Usuario 1",
-    "correo": "usuario1@example.com"
-  },
-  {
-    "id": "2",
-    "nombre": "Usuario 2",
-    "correo": "usuario2@example.com"
-  },
-  {
-    "id": "3",
-    "nombre": "Usuario 3",
-    "correo": "usuario3@example.com"
+            "nombre": "test1",
+            "correo": "test1@gmail.com",
+            "contrasena": "test1",
+            "rol": "USER_ROLE",
+            "estado": true,
+            "google": false,
+            "id": "646ad10cae92aa123ce07df7"
   }
 ]
 </code></pre>
@@ -143,17 +137,21 @@
             usuario a buscar.
           </li>
         </ul>
-        <p>Ejemplo de petición:</p>
+        <p>Ejemplo de petición: body (JSON)</p>
         <pre><code>{
   "correo": "usuario1@example.com"
 }</code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
-{
-  "id": "4",
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-}
+          {
+            "nombre": "test1",
+            "correo": "test1@gmail.com",
+            "contrasena": "test1",
+            "rol": "USER_ROLE",
+            "estado": true,
+            "google": false,
+            "id": "646ad10cae92aa123ce07df7"
+          }
 </code></pre>
         <p>Respuesta no exitosa:</p>
         <pre><code class="error">
@@ -162,7 +160,7 @@
 }
 </code></pre>
 
-        <h2>Obtener usuario por id</h2>
+        <!-- <h2>Obtener usuario por id</h2>
         <p>Trae los datos de un usuario específico por su id.</p>
         <ul>
           <li>Método: <code>GET</code></li>
@@ -189,7 +187,7 @@
 {
   "mensaje": "Usuario no encontrado"
 }
-</code></pre>
+</code></pre> -->
 
         <h2>CheckLogin</h2>
         <p>
@@ -198,12 +196,12 @@
         </p>
         <ul>
           <li>Método: <code>POST</code></li>
-          <li>Ruta: <code>/api/usuarios/loginm</code></li>
+          <li>Ruta: <code>/api/usuarios/login</code></li>
         </ul>
         <p>Parámetros de la solicitud:</p>
         <ul>
           <li>
-            <code>nombre</code> (string, obligatorio): Nombre del usuario.
+            <code>correo</code> (string, obligatorio): Correo del usuario.
           </li>
           <li>
             <code>contrasena</code> (string, obligatorio): Contraseña del
@@ -212,8 +210,10 @@
         </ul>
         <p>Ejemplo de petición:</p>
         <pre><code>{
-  "nombre": "usuario1",
-  "contrasena": "password"
+          {
+            "correo": "test1@gmail.com",
+            "contrasena": "test1"
+          }
 }</code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
@@ -223,9 +223,13 @@
 </code></pre>
         <p>Respuesta no exitosa:</p>
         <pre><code class="error">
-{
-  "mensaje": "La contraseña del usuario no coincide"
-}
+    {
+        "mensaje": "Usuario no encontrado"
+    }
+    o
+    {
+      "mensaje": "La contraseña del usuario no coincide"
+    }
 </code></pre>
 
         <h2>Crear un nuevo usuario</h2>
@@ -256,11 +260,9 @@
 }</code></pre>
         <p>Respuesta exitosa:</p>
         <pre><code class="success">
-{
-  "id": "4",
-  "nombre": "Nuevo Nombre",
-  "correo": "nuevo.correo@example.com"
-}
+          {
+            "mensaje": "El usuario ha sido creado correctamente"
+          }
 </code></pre>
         <p>Respuesta no exitosa:</p>
         <pre><code class="error">

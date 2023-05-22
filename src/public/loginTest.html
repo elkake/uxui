@@ -87,10 +87,22 @@
         .then((res) => res.json())
         .then((res) => {
           console.log(res.usuario)
+
+          /*
+            - res.usurio={
+              nombre,
+              correo,
+              imagen
+            }
+          */
+
+          /*
+          - redireccionar la pagina al inicio, una vez enviado la informacion, con react router u otro que esten usando
+          */
+
+          //cosas que solo funcionan de manera local
           localStorage.setItem('correo', res.usuario.correo)
-          // reload, recarga la pagina para que se vea el inicio de sesion
-          //en caso querer ver el responso, quitar el reload antes.
-          window.location.reload()
+          location.reload()
         })
         .catch(console.warn)
     }
@@ -100,11 +112,16 @@
       // evita mostrar la cuenta que se utilizo anteriormente
       google.accounts.id.disableAutoSelect()
       // hace la desconexion de google sign in
+      //google.accounts.id.revoke('correo', (done) => {
+      /*
+          -redireccionar la pagina al inicio de sesion, al momento de desloguear
+        */
+      //cosas que solo funcionan de manera local
       google.accounts.id.revoke(localStorage.getItem('correo'), (done) => {
-        // limpia el localstorage
         localStorage.removeItem('correo')
-        // recarga la pagina y vacia cuaalquier cosa que tengamos en nuestra app
-        window.location.reload()
+        //location.reload() solo funciona en el servidor local
+        location.reload()
+        //})
       })
     })
   </script>
