@@ -33,6 +33,10 @@ router.put('/:id', [
     (0, express_validator_1.check)('id').custom(dataValidator_1.default.idExiste),
     checking_1.default
 ], userController_1.default.updateUser);
-router.delete('/:id', [], userController_1.default.deleteUser);
+router.delete('/:id', [
+    (0, express_validator_1.check)('id', 'No es un ID valido').isMongoId(),
+    (0, express_validator_1.check)('id').custom(dataValidator_1.default.idExiste),
+    checking_1.default
+], userController_1.default.deleteUser);
 exports.default = router;
 //# sourceMappingURL=user.routes.js.map

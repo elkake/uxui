@@ -6,6 +6,8 @@ interface Usuario {
   contrasena: string
   rol: string
   estado: boolean
+  google: boolean
+  imagen: string
 }
 
 const usuarioSchema: Schema<Usuario> = new Schema({
@@ -30,7 +32,20 @@ const usuarioSchema: Schema<Usuario> = new Schema({
   estado: {
     type: Boolean,
     default: true
+  },
+  google: {
+    type: Boolean,
+    default: false
+  },
+  imagen: {
+    type: String
   }
 })
+
+usuarioSchema.methods.toJSON = function () {
+  const { __v, _id, ...usuario } = this.toObject()
+  usuario.id = _id
+  return usuario
+}
 
 export default model('Usuario', usuarioSchema)

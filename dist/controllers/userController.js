@@ -25,7 +25,7 @@ async function getUsers(req, res) {
     }
     catch (error) {
         res.status(400).json({
-            msg: 'Se presento un error al obtener la lista de Usuarios',
+            data: 'Se presento un error al obtener la lista de Usuarios',
             error
         });
     }
@@ -33,6 +33,7 @@ async function getUsers(req, res) {
 exports.getUsers = getUsers;
 async function createUsers(req, res) {
     try {
+        console.log('----create User----');
         const { nombre, correo, contrasena } = req.body;
         const usuarioExistente = await usuario_1.default.findOne({ correo });
         if (usuarioExistente) {
@@ -47,10 +48,10 @@ async function createUsers(req, res) {
             .json({ mensaje: 'El usuario ha sido creado correctamente' });
     }
     catch (error) {
-        console.log('No se pudo crear el usuario');
-        console.log('-----------------------------');
-        console.log(error);
-        return res.status(500).json({ mensaje: 'Error interno del servidor' });
+        res.status(500).json({
+            data: 'Se presento un error al crear el usuario',
+            error
+        });
     }
 }
 exports.createUsers = createUsers;
@@ -58,23 +59,26 @@ async function updateUser(req, res) {
     try {
         const { id } = req.params;
         const { nombre, correo, contrasena } = req.body;
-        console.log(id);
         const user = await usuario_1.default.findByIdAndUpdate(id, { nombre, correo, contrasena }, { new: true });
         if (!user) {
             return res.status(404).json({ mensaje: 'Usuario no encontrado' });
         }
-        return res.status(200).json(user);
+        console.log('----Update Users----');
+        return res
+            .status(200)
+            .json({ msg: `Usuario con id: ${id} actualizado exitosamente` });
     }
     catch (error) {
-        console.log('No se pudo actualizar el usuario');
-        console.log('-----------------------------');
-        console.log(error);
-        return res.status(500).json({ mensaje: 'Error interno del servidor' });
+        res.status(500).json({
+            data: 'Se presento un error al actualizar el usuario',
+            error
+        });
     }
 }
 exports.updateUser = updateUser;
 async function deleteUser(req, res) {
     try {
+        console.log('----Delete User----');
         const { id } = req.params;
         const user = await usuario_1.default.findByIdAndDelete(id);
         if (!user) {
@@ -83,10 +87,10 @@ async function deleteUser(req, res) {
         return res.status(200).json({ mensaje: 'Usuario eliminado exitosamente' });
     }
     catch (error) {
-        console.log('No se pudo eliminar el usuario');
-        console.log('-----------------------------');
-        console.log(error);
-        return res.status(500).json({ mensaje: 'Error interno del servidor' });
+        res.status(500).json({
+            data: 'Se presento un error al eliminar el usuario',
+            error
+        });
     }
 }
 exports.deleteUser = deleteUser;

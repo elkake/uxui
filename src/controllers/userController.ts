@@ -62,7 +62,6 @@ export async function createUsers(req: Request, res: Response) {
 
 export async function updateUser(req: Request, res: Response) {
   try {
-    console.log('----Update Users----')
     const { id } = req.params
     const { nombre, correo, contrasena } = req.body
 
@@ -76,6 +75,7 @@ export async function updateUser(req: Request, res: Response) {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' })
     }
 
+    console.log('----Update Users----')
     return res
       .status(200)
       .json({ msg: `Usuario con id: ${id} actualizado exitosamente` })
