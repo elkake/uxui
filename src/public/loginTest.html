@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Google Sign in</h1>
+    <!-- div necesarios de google sing in -->
+    <hr />
+
+    <div
+      id="g_id_onload"
+      data-client_id="565935417184-okrrn47e20u7jrgtk4mmjoar5b7678e4.apps.googleusercontent.com"
+      data-auto_prompt="false"
+      data-context="signup"
+      data-callback="handleCredentialResponse"
+    ></div>
+    <div
+      class="g_id_signin"
+      data-type="icon"
+      data-shape="circle"
+      data-theme="outline"
+      data-text="signin_with"
+      data-size="large"
+      data-locale="es-419"
+    >
+      >
+    </div>
+    <hr />
+    <h1>OTRO BOTON</h1>
+    <hr />
+
+    <div
+      id="g_id_onload"
+      data-client_id="565935417184-okrrn47e20u7jrgtk4mmjoar5b7678e4.apps.googleusercontent.com"
+      data-context="signin"
+      data-ux_mode="popup"
+      data-callback="handleCredentialResponse"
+      data-auto_prompt="false"
+    ></div>
+
+    <div
+      class="g_id_signin"
+      data-type="standard"
+      data-shape="rectangular"
+      data-theme="outline"
+      data-text="continue_with"
+      data-size="large"
+      data-locale="es-419"
+      data-logo_alignment="left"
+      style="max-width: 300px"
+    ></div>
+
+    <button id="signout">Sign out</button>
+    <!-- ------------------------------------ -->
+  </body>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    // esta funcion es inicializada por el callback de google (primer div)
+    // el response(parametro) es la cuenta google que inicia sesion
+    function handleCredentialResponse(response) {
+      // IMPORTANTE: si ya hay una cuenta de google iniciada, la deslogueamos
+      if (localStorage.key('correo')) {
+        //revoke, desloguea la cuenta de google (correo, callback)
+        google.accounts.id.revoke(localStorage.getItem('correo'), (done) =>
+          done()
+        )
+      }
+
+      // decodeJwtResponse(response.credential) > devuelve un objeto con los datos del usuario google
+
+      //response.credential, entrega el token de usuario google
+      const body = { id_token_google: response.credential }
+
+      // Envía el token a la ruta de ingreso por Google
+      // respuesta: datos del usuario
+      fetch('http://localhost:3000/api/auth/google', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res.usuario)
+
+          /*
+            - res.usurio={
+              nombre,
+              correo,
+              imagen
+            }
+          */
+
+          /*
+          - redireccionar la pagina al inicio, una vez enviado la informacion, con react router u otro que esten usando
+          */
+
+          //cosas que solo funcionan de manera local
+          localStorage.setItem('correo', res.usuario.correo)
+          location.reload()
+        })
+        .catch(console.warn)
+    }
+
+    const button = document.getElementById('signout')
+    button.addEventListener('click', () => {
+      // evita mostrar la cuenta que se utilizo anteriormente
+      google.accounts.id.disableAutoSelect()
+      // hace la desconexion de google sign in
+      //google.accounts.id.revoke('correo', (done) => {
+      /*
+          -redireccionar la pagina al inicio de sesion, al momento de desloguear
+        */
+      //cosas que solo funcionan de manera local
+      google.accounts.id.revoke(localStorage.getItem('correo'), (done) => {
+        localStorage.removeItem('correo')
+        //location.reload() solo funciona en el servidor local
+        location.reload()
+        //})
+      })
+    })
+  </script>
+</html>

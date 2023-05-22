@@ -1,34 +1,59 @@
 import { Router } from 'express'
-import Usuario from '../models/usuario'
+
+import { check } from 'express-validator'
+import checking from '../middleware/checking'
+import dataValidator from '../helpers/dataValidator'
+import userController from '../controllers/userController'
+
 const router: Router = Router()
 
-router.get('/', async (_req, res) => {
-  const [total, usuarios] = await Promise.all([
-    Usuario.countDocuments(),
-    Usuario.find({})
-  ])
-  res.json({
-    total,
-    usuarios
-  })
-  console.log('get')
-})
+router.get(
+  '/',
+  [
+    check('correo', 'El correo no es valido')
+      .optional()
+      .isEmail()
+      .normalizeEmail(),
+    checking
+  ],
+  userController.getUsers
+)
 
-router.post('/', async (req, res) => {
-  try {
-    const { nombre, correo } = req.body
-    const usuario = new Usuario({ nombre, correo })
-    // Guardar en bd
-    await usuario.save()
-    //response
-    res.json(usuario)
-    console.log('post')
-  } catch (error) {
-    console.log('No se pudo guardar el usuario')
-    console.log('-----------------------------')
-    console.log(error)
-    console.log('-----------------------------')
-  }
-})
+router.post(
+  '/',
+  [
+    check('nombre', 'El nombre es Obligatorio').notEmpty(),
+    check('correo', 'Verifique que el correo sea valido')
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail(),
+    check('contrasena', 'El password debe contener mas de 4 letras')
+      .notEmpty()
+      .isLength({ min: 4 }),
+    check('correo').custom(dataValidator.emailExiste),
+    checking
+  ],
+  userController.createUsers
+)
+
+router.put(
+  '/:id',
+  [
+    check('id', 'No es un ID valido').isMongoId(),
+    check('id').custom(dataValidator.idExiste),
+    checking
+  ],
+  userController.updateUser
+)
+
+router.delete(
+  '/:id',
+  [
+    check('id', 'No es un ID valido').isMongoId(),
+    check('id').custom(dataValidator.idExiste),
+    checking
+  ],
+  userController.deleteUser
+)
 
 export default router

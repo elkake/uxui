@@ -1,18 +1,21 @@
 import express from 'express'
 import cors from 'cors'
 import dbConnection from '../database/dbConnection'
-import router from '../routes/user.routes'
+import routerUser from '../routes/user.routes'
+import routerAuth from '../routes/auth.routes'
 
 class Server {
   private app: express.Application
   private port: string
   private usuariosPath: string
+  private usuariosAuth: string
 
   constructor() {
     this.app = express()
     this.port = process.env.PORT || '3000'
     // Define ruta de mis usuarios
     this.usuariosPath = '/api/usuarios'
+    this.usuariosAuth = '/api/auth'
     // Conectar a base de datos
     this.conectarDB()
     // Middlewares
@@ -36,7 +39,8 @@ class Server {
   routes() {
     // en este middleware se definen las rutas
     // ! router es una ruta de ejemplo, colocar la suya
-    this.app.use(this.usuariosPath, router)
+    this.app.use(this.usuariosPath, routerUser)
+    this.app.use(this.usuariosAuth, routerAuth)
   }
 
   listen() {
