@@ -39,7 +39,11 @@ class Server {
   routes() {
     // en este middleware se definen las rutas
     // ! router es una ruta de ejemplo, colocar la suya
+    //localhost:3000/api/usuarios/ --> get de usuarios
+
     this.app.use(this.usuariosPath, routerUser)
+
+    //localhost:3000/api/auth/ --> get de autorizaciones
     this.app.use(this.usuariosAuth, routerAuth)
   }
 
